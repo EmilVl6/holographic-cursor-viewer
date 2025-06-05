@@ -10,7 +10,7 @@
             height: 100%;
             margin: 0;
             overflow: hidden;
-            background-color: transparent;
+            background-color: transparent; 
         }
 
         #model-container {
@@ -58,36 +58,25 @@
         }
     </style>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer-effects.min.js"></script>
 </head>
 <body>
 
-    <div id="loading-indicator">Loading 3D model...</div>
+    <div id="loading-indicator">Powering AutoScroll...</div>
     <div id="error-message"></div>
 
     <div id="model-container">
-        <model-viewer-effects>
-            <model-viewer
-                id="cursor-model"
-                src="./Hologram_Cursor_Baked.glb"
-                alt="A 3D holographic cursor"
-                camera-controls
-                auto-rotate
-                loading="eager"
-                reveal="auto"
-                autoplay
-                disable-zoom
-                interpolation-decay="200"
-                disable-tap
-                environment-image="neutral"
-                exposure="1.2"
-                shadow-intensity="0"
-            >
-                <effect-composer>
-                    <bloom-effect strength="0.8" threshold="0.8" radius="0.5"></bloom-effect>
-                </effect-composer>
-            </model-viewer>
-        </model-viewer-effects>
+        <model-viewer
+            id="cursor-model"
+            src="./Hologram_Cursor_Baked.glb"
+            alt="A 3D holographic cursor"
+            camera-controls
+            auto-rotate
+            loading="eager"
+            reveal="auto"
+            autoplay
+            disable-zoom
+            interpolation-decay="200"
+            **disable-tap** ></model-viewer>
     </div>
 
     <script type="module">
