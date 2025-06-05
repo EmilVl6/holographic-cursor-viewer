@@ -7,27 +7,21 @@
     <style>
         body {
             margin: 0;
-            overflow: hidden; /* Hide scrollbars if model viewer doesn't fit exactly */
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Ensure it takes full viewport height for centering */
-            background-color: transparent; /* Very important for Google Sites embed */
+            min-height: 100vh;
+            background-color: transparent;
         }
         model-viewer {
             width: 100%;
             height: 100%;
-            /* You might need to adjust these dimensions based on how you want it to appear
-               within the Google Sites iframe. */
-            /* For a fixed size: */
-            /* width: 400px; */
-            /* height: 400px; */
         }
     </style>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
-
     <model-viewer
         src="./Hologram_Cursor_Baked.glb"
         alt="A 3D holographic cursor"
@@ -42,6 +36,5 @@
         disable-zoom
         interpolation-decay="200"
     ></model-viewer>
-
 </body>
 </html>
