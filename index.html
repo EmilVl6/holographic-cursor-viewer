@@ -5,21 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holographic Cursor Viewer</title>
     <style>
-        body {
+        /* Ensure html and body take up full viewport height */
+        html, body {
+            width: 100%;
+            height: 100%;
             margin: 0;
-            overflow: hidden;
+            overflow: hidden; /* Prevent scrolling if only model is on page */
+            background-color: transparent; /* VERY IMPORTANT for Google Sites embed */
+        }
+
+        /* The container for the model-viewer, if you use one */
+        #model-container {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background-color: transparent; /* Important for Google Sites embed */
-            font-family: Arial, sans-serif;
-            color: #333;
         }
+
+        /* The model-viewer element itself */
         model-viewer {
-            width: 100%;
-            height: 100%;
+            width: 100%; /* Make it fill the container's width */
+            height: 100%; /* Make it fill the container's height */
+            background-color: transparent; /* Ensure model-viewer background is also transparent */
         }
+
+        /* Loading and Error styles (kept for debugging) */
         #loading-indicator {
             position: absolute;
             top: 50%;
@@ -30,8 +41,8 @@
             color: white;
             border-radius: 8px;
             font-size: 1.2em;
-            display: none; /* Hidden by default */
-            z-index: 10; /* Ensure it's above the model-viewer */
+            display: none;
+            z-index: 10;
             text-align: center;
         }
         #error-message {
@@ -46,7 +57,7 @@
             font-size: 1.2em;
             font-weight: bold;
             text-align: center;
-            display: none; /* Hidden by default */
+            display: none;
             z-index: 10;
         }
     </style>
@@ -57,57 +68,51 @@
     <div id="loading-indicator">Loading 3D model...</div>
     <div id="error-message"></div>
 
-    <model-viewer
-    id="cursor-model"
-    src="./Hologram_Cursor_Baked.glb" alt="A 3D holographic cursor"
-    shadow-intensity="1"
-    camera-controls
-    auto-rotate
-    ar
-    autoplay
-    environment-image="neutral"
-    exposure="1"
-    disable-zoom
-    interpolation-decay="200"
-    loading="eager"
-    reveal="auto"
-></model-viewer>
+    <div id="model-container">
+        <model-viewer
+            id="cursor-model"
+            src="./Hologram_Cursor_Baked.glb"
+            alt="A 3D holographic cursor"
+            camera-controls
+            auto-rotate
+            loading="eager"
+            reveal="auto"
+            /* You can add back other attributes here later if needed */
+            /* ar */
+            /* autoplay */
+            /* environment-image="neutral" */
+            /* exposure="1" */
+            /* disable-zoom */
+            /* interpolation-decay="200" */
+        ></model-viewer>
+    </div>
 
     <script type="module">
         const modelViewer = document.querySelector('#cursor-model');
         const loadingIndicator = document.getElementById('loading-indicator');
         const errorMessage = document.getElementById('error-message');
 
-        // Check if the <model-viewer> element exists in the DOM
         if (!modelViewer) {
             errorMessage.textContent = 'Error: <model-viewer> element not found!';
             errorMessage.style.display = 'block';
             console.error('Error: <model-viewer> element with ID "cursor-model" not found.');
         } else {
-            // Display loading indicator initially
             loadingIndicator.style.display = 'block';
 
-            // Event listener for when the model loads successfully
             modelViewer.addEventListener('load', () => {
                 console.log('3D model has loaded successfully!');
-                loadingIndicator.style.display = 'none'; // Hide loading indicator
-                errorMessage.style.display = 'none'; // Hide any potential previous errors
+                loadingIndicator.style.display = 'none';
+                errorMessage.style.display = 'none';
+                // Optional: You can now make the model-viewer visible if it was hidden initially
+                // modelViewer.style.visibility = 'visible';
             });
 
-            // Event listener for errors during model loading
             modelViewer.addEventListener('error', (event) => {
                 console.error('Error loading 3D model:', event);
                 loadingIndicator.style.display = 'none';
                 errorMessage.textContent = `Error loading model. Check console for details. (Path: ${modelViewer.src})`;
                 errorMessage.style.display = 'block';
             });
-
-            // Optional: Check if the src attribute is set and if the model path looks valid
-            if (!modelViewer.src || modelViewer.src === window.location.href) { // Default src is current page if not set
-                console.warn('model-viewer src attribute is missing or invalid. Check the <model-viewer> tag.');
-                // You could add an error message here too if you wish,
-                // but the 'error' event listener above should catch load failures.
-            }
         }
     </script>
 
