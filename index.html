@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holographic Cursor Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars if model viewer doesn't fit exactly */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure it takes full viewport height for centering */
+            background-color: transparent; /* Very important for Google Sites embed */
+        }
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            /* You might need to adjust these dimensions based on how you want it to appear
+               within the Google Sites iframe. */
+            /* For a fixed size: */
+            /* width: 400px; */
+            /* height: 400px; */
+        }
+    </style>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+    <model-viewer
+        src="./Hologram_Cursor_Baked.glb"
+        alt="A 3D holographic cursor"
+        shadow-intensity="1"
+        camera-controls
+        auto-rotate
+        ar
+        autoplay
+        skybox-image="https://cdn.glitch.global/60d705c7-950e-436d-9657-0a42426305a4/default_skybox.hdr?v=1626245366034"
+        environment-image="neutral"
+        exposure="1"
+        disable-zoom
+        interpolation-decay="200"
+    ></model-viewer>
+
+</body>
+</html>
