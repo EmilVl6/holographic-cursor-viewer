@@ -58,22 +58,20 @@
     <div id="error-message"></div>
 
     <model-viewer
-        id="cursor-model"
-        src="./Hologram_Cursor_Baked.glb"
-        alt="A 3D holographic cursor"
-        shadow-intensity="1"
-        camera-controls
-        auto-rotate
-        ar
-        autoplay
-        skybox-image="https://cdn.glitch.global/60d705c7-950e-436d-9657-0a42426305a4/default_skybox.hdr?v=1626245366034"
-        environment-image="neutral"
-        exposure="1"
-        disable-zoom
-        interpolation-decay="200"
-        loading="eager"
-        reveal="auto"
-    ></model-viewer>
+    id="cursor-model"
+    src="./Hologram_Cursor_Baked.glb" alt="A 3D holographic cursor"
+    shadow-intensity="1"
+    camera-controls
+    auto-rotate
+    ar
+    autoplay
+    environment-image="neutral"
+    exposure="1"
+    disable-zoom
+    interpolation-decay="200"
+    loading="eager"
+    reveal="auto"
+></model-viewer>
 
     <script type="module">
         const modelViewer = document.querySelector('#cursor-model');
